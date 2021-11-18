@@ -33,8 +33,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT( \
   XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F5,  KC_F6,\
   _______,  XXXXXXX,  KC_P7,  KC_P8,  KC_P9,   KC_ASTR,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-  ______, KC_MINS,    KC_P4,  KC_P5,  KC_P6, XXXXXXX,                    KC_LPRN, KC_RPRN, KC_EXLM, KC_DLR, KC_SCLN, KC_QUOT, \
-  ______,  KC_PLUS,   KC_P1,  KC_P2,  KC_P3,   KC_SLSH, KC_MUTE,     KC_RAISE,KC_LBRC, KC_RBRC, KC_COMM,  KC_DOT, KC_EQL,  KC_SLSH, \
+  _______, KC_MINS,    KC_P4,  KC_P5,  KC_P6, XXXXXXX,                    KC_LPRN, KC_RPRN, KC_EXLM, KC_DLR, KC_SCLN, KC_QUOT, \
+  _______,  KC_PLUS,   KC_P1,  KC_P2,  KC_P3,   KC_SLSH, KC_MUTE,     KC_RAISE,KC_LBRC, KC_RBRC, KC_COMM,  KC_DOT, KC_EQL,  KC_SLSH, \
                  KC_LCTRL,KC_LALT,KC_LGUI, KC_LOWER, KC_SPC,      KC_ENT,  KC_RAISE, KC_LBRC, KC_RBRC, KC_BSLS \
 ),
 // Nav
@@ -75,9 +75,9 @@ static void print_status_narrow(void) {
     oled_write_ln_P(PSTR("MODE"), false);
     oled_write_ln_P(PSTR(""), false);
     if (keymap_config.swap_lctl_lgui) {
-        oled_write_ln_P(PSTR("MAC"), false);
-    } else {
         oled_write_ln_P(PSTR("WIN"), false);
+    } else {
+        oled_write_ln_P(PSTR("MAC"), false);
     }
 
     switch (get_highest_layer(default_layer_state)) {
@@ -95,10 +95,10 @@ static void print_status_narrow(void) {
             oled_write_P(PSTR("Base\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
+            oled_write_P(PSTR("Nav"), false);
             break;
         case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
+            oled_write_P(PSTR("Code"), false);
             break;
         case _ADJUST:
             oled_write_P(PSTR("Adj\n"), false);
@@ -125,6 +125,10 @@ void oled_task_user(void) {
         oled_write_P(PSTR("Yo Dawg"), false);
         // render_logo();
     }
+}
+
+void suspend_power_down_user(void) {
+    oled_off();
 }
 
 #endif
