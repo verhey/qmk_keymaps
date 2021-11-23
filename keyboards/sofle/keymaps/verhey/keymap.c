@@ -95,10 +95,10 @@ static void print_status_narrow(void) {
             oled_write_P(PSTR("Base\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("Nav"), false);
+            oled_write_P(PSTR("Nav\n"), false);
             break;
         case _LOWER:
-            oled_write_P(PSTR("Code"), false);
+            oled_write_P(PSTR("Code\n"), false);
             break;
         case _ADJUST:
             oled_write_P(PSTR("Adj\n"), false);
